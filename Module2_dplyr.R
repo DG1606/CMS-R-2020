@@ -41,7 +41,7 @@ select(p_xtreme,-(ssc_p:degree_p))
 select(p_xtreme, ends_with("_p")) 
 select(p_xtreme, starts_with("h"))
 select(p_xtreme, contains("_")) # there are other helper functions also
-rename(p_xtreme, gen = gender) # to rename varaibles
+rename(p_xtreme, gen = gender) # to rename variables
 select(p_xtreme, 1:3)
 
 # create new varaibles which are functions of existing varaibles using mutuate()
@@ -54,7 +54,8 @@ summarise(group_by(p_xtreme, degree_t), mean(degree_p))
 
 # select rows randomly
 sample_n(placement, size = 10)
-sample_n(placement, size = 10, seed = 100) # seed helps to get the same set
+set.seed(100) # seed helps to get the same set
+sample_n(placement, size = 10) 
 sample_frac(placement, size = 0.10)
 
 
@@ -69,4 +70,3 @@ placement %>% filter(status == "Placed") %>%
 placement %>% group_by(status) %>% summarise(count = n(), mean(degree_p))
 placement %>% filter(status == "Not Placed") %>% 
   group_by(degree_t) %>% summarise(count = n())
-
